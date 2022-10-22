@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const connectDB = async() => {
     try {
         await mongoose.connect(
-            "mongodb+srv://projet-DMWM:projet-DMWM@projet-dmwm.6gr4rs9.mongodb.net/?retryWrites=true&w=majority", {
+            process.env.DATA_BASE_URL, {
                 useUnifiedTopology: true,
             }
         );
 
-        console.log("Database connection success !");
+        console.log("Database connection success");
     } catch (err) {
         console.log(err);
     }
