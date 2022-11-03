@@ -5,23 +5,30 @@ const userSchema = new mongoose.Schema({
     type: String,
     required:true
   },
-  nom: {
+  username: {
     type: String,
+    unique:true,
     required:true
   },
-  prenom: {
+  email: {
     type: String,
+    unique:true,
     required:true
   },
-  tel: {
+  phone: {
     type: String,
-    unique: true,
+    unique:true,
     required:true
   },
   sexe: {
     type: String,
     required:true
   },
+  guide:{
+    type:Boolean,
+    required:true,
+    default:false
+  }
 });
 
 userSchema.pre("save", function (next) {
