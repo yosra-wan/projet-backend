@@ -31,7 +31,6 @@ router.post("/signup", async (req, res) => {
 });
 router.get("/signin",async (req,res)=>{
  const {username,password} =req.headers;
- console.log(req.headers)
   let User= await user.findOne({username});
   User ?  User.comparePassword(password).then(()=>{
         let token =jwt.sign({userId:User._id},process.env.ACCES_TOKEN_KEY);
