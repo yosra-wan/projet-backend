@@ -40,8 +40,6 @@ router
       : res.status(401).send("phone not found");
   })
   .patch(requireToken, async (req, res) => {
-    console.log(req.user._id);
-    console.log("password :", req.body.password);
     await user
       .findByIdAndUpdate(
         { _id: req.user._id },

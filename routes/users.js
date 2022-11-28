@@ -15,7 +15,6 @@ router.post("/signup", async (req, res) => {
     let User = new user({ password, username, email, phone, sexe });
     await User.save();
     let token = jwt.sign({ userId: User._id }, process.env.ACCES_TOKEN_KEY);
-    console.log(token);
     res.send({ token });
     console.log("signup posted");
   } catch (err) {
@@ -43,12 +42,19 @@ router.get("/signin", async (req, res) => {
 router
   .route("/:id")
   .get(requireToken, (req, res) => {
-    !req.err
-      ? res.send(`get user by id ${req.params.id} => ${req.user}`)
-      : res.status(401).send("Id not found");
+    !req.err ? res.send(req.user) : res.status(401).send(req.err);
   })
-  .patch((req, res) => {
-    res.send(`update user by id ${req.params.id}`);
+  .patch(requireToken, async (req, res) => {
+    const { recommended } = req.body;
+    await user
+      .findByIdAndUpdate(
+        { _id: req.user._id },
+        {
+          recommended: recommended,
+        }
+      )
+      .then((reselt) => res.send(true))
+      .catch((err) => res.status(401).send(err));
   });
 router.param("id", async (req, res, next, _id) => {
   let add = await user.findById({ _id }).catch((err) => (req.err = err));

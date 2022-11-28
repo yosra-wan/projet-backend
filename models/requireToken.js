@@ -4,7 +4,6 @@ let User = mongoose.model("user");
 
 module.exports = (req, res, next) => {
   let { authorization } = req.headers;
-  console.log("token require", req.headers);
   if (!authorization) {
     return res.status(401).send({ error: "failed access" });
   }
