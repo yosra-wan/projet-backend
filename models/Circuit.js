@@ -18,11 +18,11 @@ const circuitSchema = new mongoose.Schema({
     required: true,
   },
   GroupPrice: {
-    type: String,
+    type: [String],
     required: true,
   },
   guideId: {
-    type: Boolean,
+    type: String,
     required: true,
   },
   reservationType: {

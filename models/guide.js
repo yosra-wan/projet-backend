@@ -8,6 +8,7 @@ const guideSchema = new mongoose.Schema({
   ratingNumber: {
     type: String,
     required: true,
+    default: "0",
   },
   listCategory: {
     type: [String],
@@ -18,30 +19,37 @@ const guideSchema = new mongoose.Schema({
     required: true,
   },
   hourPrice: {
-    type: String,
+    type: Number,
     required: true,
   },
   dayPrice: {
-    type: String,
+    type: Number,
     required: true,
   },
   reservationType: {
-    type: String,
+    type: [Number],
     required: true,
+    default: [],
   },
   ListOfbestplace: {
     type: [String],
     required: true,
   },
-  imgGroup: {
+  galerie: {
     type: [String],
     required: true,
   },
   verifiedStatus: {
-    type: [String],
+    type: [],
+    required: true,
+  },
+  profilePicture: {
+    type: String,
     required: true,
   },
 });
-
+guideSchema.pre("save", function (next) {
+  next();
+});
 let collectionName = "guides";
 mongoose.model("guide", guideSchema, collectionName);

@@ -39,6 +39,19 @@ router.get("/signin", async (req, res) => {
         .catch(() => res.status(401).send("Password failed"))
     : res.status(401).send("User not found");
 });
+
+router.patch("/updateGuidePass", requireToken, async (req, res) => {
+  const { guide } = req.body;
+  await user
+    .findByIdAndUpdate(
+      { _id: req.user._id },
+      {
+        guide: guide,
+      }
+    )
+    .then((reselt) => res.send(true))
+    .catch((err) => res.status(401).send(err));
+});
 router
   .route("/:id")
   .get(requireToken, (req, res) => {
