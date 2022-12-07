@@ -6,6 +6,11 @@ const circuitSchema = new mongoose.Schema({
     unique: true,
   },
   placeNumber: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  dateCircuit: {
     type: String,
     required: true,
   },
@@ -14,19 +19,26 @@ const circuitSchema = new mongoose.Schema({
     required: true,
   },
   IndivdualePrice: {
-    type: String,
+    type: Number,
     required: true,
+    default: null,
   },
   GroupPrice: {
-    type: [String],
+    type: Number,
     required: true,
+    default: null,
   },
   guideId: {
     type: String,
     required: true,
+    default: null,
   },
-  reservationType: {
-    type: String,
+  guideIdProposal: {
+    type: [String],
+    required: true,
+  },
+  totalPlace: {
+    type: Number,
     required: true,
   },
   ListMembreReserver: {
