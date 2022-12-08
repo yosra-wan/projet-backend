@@ -2,26 +2,26 @@ var express = require("express");
 var router = express.Router();
 const { default: mongoose } = require("mongoose");
 
-require("../models/circuit");
-const Circuit = mongoose.model("circuit");
+require("../models/privatecCircuit");
+const PrivatecCircuit = mongoose.model("privatecCircuit");
 
-router.post("/setCircuit", async (req, res) => {
+router.post("/setPrivatecCircuit", async (req, res) => {
   let {
     name,
     dateCircuit,
     localization,
-    guideIdProposal,
-    totalPlace,
+    guideIdProposed,
+    totalplaceNumber,
     imgGroup,
     category,
   } = req.body;
   try {
-    let circuit = new Circuit({
+    let circuit = new PrivatecCircuit({
       name,
       dateCircuit,
       localization,
-      guideIdProposal,
-      totalPlace,
+      guideIdProposed,
+      totalplaceNumber,
       imgGroup,
       category,
     });
@@ -36,15 +36,15 @@ router.post("/setCircuit", async (req, res) => {
   }
 });
 
-router.get("/getCircuit", async (req, res) => {
+router.get("/getPrivatecCircuit", async (req, res) => {
   const { name } = req.headers;
-  let circuit = await Circuit.findOne({ name }).catch(() =>
+  let circuit = await PrivatecCircuit.findOne({ name }).catch(() =>
     res.status(401).send("circuit failed")
   );
   res.send(circuit);
 });
-router.get("/getAllCircuit", async (req, res) => {
-  let circuit = await Circuit.find().catch(() =>
+router.get("/getAllPrivatecCircuit", async (req, res) => {
+  let circuit = await PrivatecCircuit.find().catch(() =>
     res.status(401).send("circuit failed")
   );
   res.send(circuit);
@@ -72,4 +72,5 @@ router.get("/getAllCircuit", async (req, res) => {
 //   req.user = add;
 //   next();
 // });
+
 module.exports = router;

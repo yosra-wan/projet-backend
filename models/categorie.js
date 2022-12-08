@@ -5,6 +5,10 @@ const categorieSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  icon: {
+    type: String,
+    required: true,
+  },
 });
 categorieSchema.pre("save", function (next) {
   next();

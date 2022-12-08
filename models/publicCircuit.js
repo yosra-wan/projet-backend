@@ -1,5 +1,5 @@
 let mongoose = require("mongoose");
-const circuitSchema = new mongoose.Schema({
+const publiccCircuitSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -18,12 +18,7 @@ const circuitSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  IndivdualePrice: {
-    type: Number,
-    required: true,
-    default: null,
-  },
-  GroupPrice: {
+  Price: {
     type: Number,
     required: true,
     default: null,
@@ -33,16 +28,12 @@ const circuitSchema = new mongoose.Schema({
     required: true,
     default: null,
   },
-  guideIdProposal: {
-    type: [String],
-    required: true,
-  },
-  totalPlace: {
+  totalplaceNumber: {
     type: Number,
     required: true,
   },
   ListMembreReserver: {
-    type: [String],
+    type: [],
     default: [],
   },
   imgGroup: {
@@ -54,6 +45,8 @@ const circuitSchema = new mongoose.Schema({
     required: true,
   },
 });
-
-let collectionName = "circuits";
-mongoose.model("circuit", circuitSchema, collectionName);
+publiccCircuitSchema.pre("save", function (next) {
+  next();
+});
+let collectionName = "publiccCircuits";
+mongoose.model("publiccCircuit", publiccCircuitSchema, collectionName);

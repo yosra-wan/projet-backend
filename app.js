@@ -12,6 +12,9 @@ var usersRouter = require("./routes/users");
 var guidesRouter = require("./routes/guides");
 var verificationsRouter = require("./routes/verifications");
 var categoriesRouter = require("./routes/categories");
+var privateCircuitsRouter = require("./routes/privateCircuits");
+var proposedCircuitsRouter = require("./routes/proposedCircuits");
+var publicCircuitsRouter = require("./routes/publicCircuits");
 
 var app = express();
 const { default: mongoose } = require("mongoose");
@@ -35,6 +38,10 @@ app.use("/users", usersRouter);
 app.use("/guides", guidesRouter);
 app.use("/verifications", verificationsRouter);
 app.use("/categories", categoriesRouter);
+
+app.use("/privateCircuits", privateCircuitsRouter);
+app.use("/publicCircuits", publicCircuitsRouter);
+app.use("/proposedCircuits", proposedCircuitsRouter);
 
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {

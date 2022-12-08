@@ -6,10 +6,11 @@ require("../models/categorie");
 const Categorie = mongoose.model("categorie");
 
 router.post("/setCategorie", async (req, res) => {
-  let { name } = req.body;
+  let { name, icon } = req.body;
   try {
     let categorie = new Categorie({
       name,
+      icon,
     });
     await categorie.save();
     console.log("categorie posted");
