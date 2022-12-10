@@ -11,11 +11,11 @@ const guideSchema = new mongoose.Schema({
     default: "0",
   },
   listCategory: {
-    type: [String],
+    type: [],
     required: true,
   },
   workArea: {
-    type: [String],
+    type: [],
     required: true,
   },
   hourPrice: {
