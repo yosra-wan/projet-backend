@@ -53,9 +53,23 @@ router.get(
   async (req, res) => {
     id = req.guide._id.toString();
     let circuit = await ProposedCircuit.find({
-      guideIdProposed: id,
+      guideIdProposed: { $elemMatch: { _id: id } },
     }).catch(() => res.status(401).send("circuit failed"));
     res.send(circuit);
   }
 );
+
+// router.patch("/update", requireToken, async (req, res) => {
+//   const { guide } = req.body;
+//   await user
+//     .findByIdAndUpdate(
+//       { _id: req.user._id },
+//       {
+//         guide: guide,
+//       }
+//     )
+//     .then((reselt) => res.send(true))
+//     .catch((err) => res.status(401).send(err));
+// });
+
 module.exports = router;
