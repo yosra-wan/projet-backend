@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
       res.status(401).send({ error: "erreur" });
     } else {
       let { userId } = payload;
-      let guide = await Guide.findOne({ userId });
+      let guide = await Guide.findOne({ idUser: userId });
       req.guide = guide;
       next();
     }

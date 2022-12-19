@@ -51,5 +51,6 @@ const guideSchema = new mongoose.Schema({
 guideSchema.pre("save", function (next) {
   next();
 });
+
 let collectionName = "guides";
 mongoose.model("guide", guideSchema, collectionName);

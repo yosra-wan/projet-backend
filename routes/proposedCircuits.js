@@ -3,6 +3,7 @@ var router = express.Router();
 const { default: mongoose } = require("mongoose");
 require("../models/proposedCircuit");
 const ProposedCircuit = mongoose.model("proposedCircuit");
+let requireTokenUserSwitch = require("../models/requireTokenUserSwitch");
 router.post("/setProposedCircuit", async (req, res) => {
   let {
     name,
@@ -45,10 +46,16 @@ router.get("/getProposedCircuit", async (req, res) => {
   );
   res.send(circuit);
 });
-router.get("/getAllProposedCircuit", async (req, res) => {
-  let circuit = await ProposedCircuit.find().catch(() =>
-    res.status(401).send("circuit failed")
-  );
-  res.send(circuit);
-});
+
+router.get(
+  "/getAllProposedCircuit",
+  requireTokenUserSwitch,
+  async (req, res) => {
+    id = req.guide._id.toString();
+    let circuit = await ProposedCircuit.find({
+      guideIdProposed: id,
+    }).catch(() => res.status(401).send("circuit failed"));
+    res.send(circuit);
+  }
+);
 module.exports = router;
