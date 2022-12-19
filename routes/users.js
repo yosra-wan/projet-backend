@@ -23,7 +23,14 @@ router.post("/signup", async (req, res) => {
     res.status(401).send("signup failed");
   }
 });
-
+router.get("/getAllNameUser", async (req, res) => {
+  let listeName = [];
+  let listUsers = await user.find().catch((err) => res.status(401).send(err));
+  listUsers.forEach((element) => {
+    listeName.push({ _id: element._id, username: element.username });
+  });
+  res.send(listeName);
+});
 router.get("/signin", async (req, res) => {
   const { username, password } = req.headers;
   let User = await user.findOne({ username });
