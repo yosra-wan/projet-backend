@@ -15,7 +15,6 @@ const proposedCircuitSchema = new mongoose.Schema({
   },
   Price: {
     type: Number,
-    required: true,
     default: null,
   },
   guideIdProposed: {
@@ -36,7 +35,6 @@ const proposedCircuitSchema = new mongoose.Schema({
   },
   etat: {
     type: Boolean,
-    required: true,
     default: null,
   },
   idUser: {

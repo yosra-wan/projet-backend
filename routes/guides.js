@@ -47,14 +47,20 @@ router.post("/signup", async (req, res) => {
 });
 
 router.get("/signin", requireTokenUserSwitch, async (req, res) => {
-  const { userId } = req.headers;
-  let guide = await Guide.findOne({ userId })
-    .then(() => {
-      let token = jwt.sign({ guideId: guide._id }, process.env.ACCES_TOKEN_KEY);
-      res.send({ token });
-    })
-    .catch(() => res.status(401).send("Password failed"));
+  const { guide } = req;
+  if (guide) {
+    let token = jwt.sign({ guideId: guide._id }, process.env.ACCES_TOKEN_KEY);
+    res.send({ token });
+  } else {
+    res.status(401).send("Password failed");
+  }
 });
+
+router.get("/getAllGuide", async (req, res) => {
+  let collectionGuide = Guide.find().catch((err) => res.status(401).send(err));
+  collectionGuide.then((result) => res.send(result));
+});
+
 // router
 //   .route("/:id")
 //   .get(requireTokenGuide, (req, res) => {
