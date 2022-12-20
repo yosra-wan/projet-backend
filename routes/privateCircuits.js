@@ -15,6 +15,7 @@ router.post("/setPrivatecCircuit", async (req, res) => {
     imgGroup,
     category,
     MembreReserver,
+    Price,
   } = req.body;
   try {
     let circuit = new PrivatecCircuit({
@@ -26,6 +27,7 @@ router.post("/setPrivatecCircuit", async (req, res) => {
       imgGroup,
       category,
       MembreReserver,
+      Price,
     });
     await circuit.save();
 

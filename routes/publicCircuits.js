@@ -15,6 +15,7 @@ router.post("/setPubliccCircuit", async (req, res) => {
     imgGroup,
     category,
     ListMembreReserver,
+    Price,
   } = req.body;
   try {
     let circuit = new PubliccCircuit({
@@ -26,6 +27,7 @@ router.post("/setPubliccCircuit", async (req, res) => {
       imgGroup,
       category,
       ListMembreReserver,
+      Price,
     });
     await circuit.save();
 
