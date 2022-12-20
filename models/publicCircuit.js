@@ -20,7 +20,6 @@ const publiccCircuitSchema = new mongoose.Schema({
   },
   Price: {
     type: Number,
-    required: true,
     default: null,
   },
   guideId: {
@@ -34,7 +33,7 @@ const publiccCircuitSchema = new mongoose.Schema({
   },
   ListMembreReserver: {
     type: [],
-    default: [],
+    required: true,
   },
   imgGroup: {
     type: [String],

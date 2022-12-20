@@ -70,5 +70,15 @@ router.patch("/updateTripStatus", async (req, res) => {
     .then((reselt) => res.send(true))
     .catch((err) => res.status(401).send(err));
 });
-
+router.patch("/updateTripStatuspricipale", async (req, res) => {
+  const trip = req.body;
+  await ProposedCircuit.findByIdAndUpdate(
+    { _id: trip._id },
+    {
+      etat: trip.etat,
+    }
+  )
+    .then((reselt) => res.send(true))
+    .catch((err) => res.status(401).send(err));
+});
 module.exports = router;

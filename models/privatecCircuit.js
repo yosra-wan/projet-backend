@@ -20,7 +20,6 @@ const privatecCircuitSchema = new mongoose.Schema({
   },
   Price: {
     type: Number,
-    required: true,
     default: null,
   },
   guideId: {
@@ -34,6 +33,10 @@ const privatecCircuitSchema = new mongoose.Schema({
   },
   category: {
     type: [String],
+    required: true,
+  },
+  MembreReserver: {
+    type: String,
     required: true,
   },
 });
