@@ -59,17 +59,16 @@ router.get(
   }
 );
 
-// router.patch("/update", requireToken, async (req, res) => {
-//   const { guide } = req.body;
-//   await user
-//     .findByIdAndUpdate(
-//       { _id: req.user._id },
-//       {
-//         guide: guide,
-//       }
-//     )
-//     .then((reselt) => res.send(true))
-//     .catch((err) => res.status(401).send(err));
-// });
+router.patch("/updateTripStatus", async (req, res) => {
+  const trip = req.body;
+  await ProposedCircuit.findByIdAndUpdate(
+    { _id: trip._id },
+    {
+      guideIdProposed: trip.guideIdProposed,
+    }
+  )
+    .then((reselt) => res.send(true))
+    .catch((err) => res.status(401).send(err));
+});
 
 module.exports = router;
