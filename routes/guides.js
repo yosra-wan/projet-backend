@@ -60,27 +60,4 @@ router.get("/getAllGuide", async (req, res) => {
   let collectionGuide = Guide.find().catch((err) => res.status(401).send(err));
   collectionGuide.then((result) => res.send(result));
 });
-
-// router
-//   .route("/:id")
-//   .get(requireTokenGuide, (req, res) => {
-//     !req.err ? res.send(req.user) : res.status(401).send(req.err);
-//   })
-//   .patch(requireTokenGuide, async (req, res) => {
-//     const { recommended } = req.body;
-//     await user
-//       .findByIdAndUpdate(
-//         { _id: req.user._id },
-//         {
-//           recommended: recommended,
-//         }
-//       )
-//       .then((reselt) => res.send(true))
-//       .catch((err) => res.status(401).send(err));
-//   });
-// router.param("id", async (req, res, next, _id) => {
-//   let add = await user.findById({ _id }).catch((err) => (req.err = err));
-//   req.user = add;
-//   next();
-// });
 module.exports = router;
